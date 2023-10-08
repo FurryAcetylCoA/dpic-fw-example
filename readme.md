@@ -4,14 +4,14 @@
 ----
 
 使用方法(具体可参考src/DPIC-fw-test.scala）：
-1.定以需要使用的信号列表，支持输入与输出。如：
+1. 定以需要使用的信号列表，支持输入与输出。如：
 class DpTestBundle extends DPICBundle{
   val in1 = Input(UInt(8.W))
   val out = Output(UInt(16.W))
 }
-2.实例化
+2. 实例化
 val test1 = DPIC(new DpTestBundle)
-3.在所有实例化完成后，在顶层模块的结尾使用该接口来生成C侧的代码
+3. 在所有实例化完成后，在顶层模块的结尾使用该接口来生成C侧的代码
 DPIC.collect()
 
 ----
