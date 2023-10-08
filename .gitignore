@@ -1,0 +1,6 @@
+.bloop
+.metals
+out/
+.nvim
+HDL_gen/*
+SRC_gen/*
