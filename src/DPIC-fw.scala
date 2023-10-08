@@ -14,6 +14,7 @@ import scala.collection.mutable.ListBuffer
 
 class DPICBundle extends Bundle {
 
+  val always_comb: Boolean = false
   val desiredModuleName: String = {
     val className: String = this.getClass().getName().replace("$", ".")
     className.split("\\.").filterNot(_.forall(java.lang.Character.isDigit)).last
@@ -75,13 +76,21 @@ class DPIC[T <: DPICBundle](gen: T) extends ExtModule with HasExtModuleInline {
     val modulePortsString =
       modulePortsWithClock.flatten.map { arg => getModulePortString(arg._1, arg._2) }.mkString(",\n  ")
 
+    val alwaysString = {
+      if(gen.always_comb){
+        "always_comb begin"
+      }else{
+        "always @(posedge clock) begin"
+      }
+    }
+
     val body = s"""
                   | module $desiredName(
                   |  $modulePortsString
                   | );
                   |/* verilator lint_off WIDTHEXPAND */
                   | $dpicImport
-                  | always @(posedge clock) begin
+                  | $alwaysString
                   |  $dpicFuncName (${modulePorts.flatten.map { arg => arg._1 }.mkString(", ")});
                   | end
                   |endmodule

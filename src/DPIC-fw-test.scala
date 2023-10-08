@@ -7,6 +7,7 @@ import dpicfw._
 class DpTestBundle extends DPICBundle{
   val in1 = Input(UInt(8.W))
   val out = Output(UInt(16.W))
+  override val always_comb = true
 }
 
 class DpTestBundle2 extends DPICBundle{
