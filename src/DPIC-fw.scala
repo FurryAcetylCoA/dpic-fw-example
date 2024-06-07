@@ -15,7 +15,7 @@ import scala.collection.mutable.ListBuffer
 class DPICBundle extends Bundle {
 
   val always_comb: Boolean = false
-  val desiredModuleName: String = {
+  lazy val desiredModuleName: String = {
     val className: String = this.getClass().getName().replace("$", ".")
     className.split("\\.").filterNot(_.forall(java.lang.Character.isDigit)).last
   }
