@@ -1,3 +1,7 @@
+## Archived
+
+chisel有原生dpi支持了，见 https://github.com/chipsalliance/chisel/pull/4158
+
 适用于chisel的DPI-C绑定生成框架
 
 可以自动生成Verilog侧与C侧代码，受香山Difftest框架启发
